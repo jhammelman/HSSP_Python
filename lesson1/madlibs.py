@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 
 print "------Correctly working program-------"
 # There is a bug in this program with the
