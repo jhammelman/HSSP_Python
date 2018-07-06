@@ -11,9 +11,9 @@ sentence = "After hiding the painting in his " + noun1 + " for two years, he gre
 
 print sentence
 
-print "------Bug with variables-------"
+print "------Bug 1-------"
 # There is a bug in this program with the
-# variable names!
+# variable names! What is it?
 noun = raw_input("Give me a noun: ")
 
 adjective = raw_input("Give me an adjective: ")
@@ -24,7 +24,7 @@ sentence = "After hiding the painting in his " + noun + " for two years, he grew
 
 print sentence
 
-print "------Bug with variables-------"
+print "------Bug 2-------"
 # Another common error is to rename a variable that
 # python is already using, by writing raw_input =
 # we are overwriting the function that python has
