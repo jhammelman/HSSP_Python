@@ -38,15 +38,8 @@ gvim text_adventure_game.py
 
 Now we can see there is an if statement based on the **variable go_in** which stores the users' response to opening the gate. **What are the potential user responses? How does the computer respond?**
 
-```
-if go_in is "y":
-    print("You yank on the gate, but the large gold lock won't budge.")
-    pick_lock = raw_input("Do you try to pick the lock? (y or n) ")
-    # enter your if statement here to decide what happens if you try to pick the lock
-    print("What happens? You decide...")    
-```
 
-There is also an if statement if the user responds with a "n" to opening the gate.
+If the user responds with a "n" to opening the gate, there is a second question and responses. **What are the potential user responses? How does the computer respond?**
 
 ```
 elif go_in is "n":
@@ -65,7 +58,7 @@ elif go_in is "n":
 
 ```
 
-We can tell this question only happens if **go_in is "n"** because everything under it is **indented**. Indenting improperly can cause errors in the code. We can see here we test three directions. First **fill in new responses** by modifying the code for each direction. Test your new responses by running the code:
+We can tell the question about which way to turn only happens if the variable go_in is "n" because everything under it is **indented**. Indenting improperly can cause errors in the code. We can see here we test three directions. **First fill in new responses by modifying the code for each direction. Test your new responses by running the code:**
 
 ```
 python text_adventure_game.py 
@@ -80,7 +73,7 @@ if go_in is "y":
     print("What happens? You decide...")    
 ```
 
-Try replacing the print statement by writing your own if statement. Remember that we will be comparing the **variable** pick_lock which holds the string input from the user to look for our two outcomes ("y" or "n").:
+**Try replacing the print statement by writing your own if statement. Remember that we will be comparing the variable pick_lock which holds the string input from the user to look for our two outcomes ("y" or "n").:
 
 
-Try adding a third outcome if the user enters a bad input as an else statement, this will catch any input that isn't "y" or "n".
+Try adding a third outcome if the user enters a bad input as an else statement, this will catch any input that isn't "y" or "n".**
