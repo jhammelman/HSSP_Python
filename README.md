@@ -36,10 +36,17 @@ Now we can take a look at the code. Type once again into the terminal
 gvim text_adventure_game.py 
 ```
 
-Now we can see there is an if statement based on the variable go_in which stores the users' response to opening the gate. What are the potential user responses? How does the computer respond?
+Now we can see there is an if statement based on the **variable go_in** which stores the users' response to opening the gate. **What are the potential user responses? How does the computer respond?**
 
+```
+if go_in is "y":
+    print("You yank on the gate, but the large gold lock won't budge.")
+    pick_lock = raw_input("Do you try to pick the lock? (y or n) ")
+    # enter your if statement here to decide what happens if you try to pick the lock
+    print("What happens? You decide...")    
+```
 
-There is also an if statement if the user responds with a "n" to opening the gate in the elif statement. 
+There is also an if statement if the user responds with a "n" to opening the gate.
 
 ```
 elif go_in is "n":
@@ -58,7 +65,7 @@ elif go_in is "n":
 
 ```
 
-We can tell this question only happens if go_in is "n" because everything under it is indented. Indenting improperly can cause errors in the code. We can see here we test three directions. First fill in new responses by modifying the code for each direction. Test your new responses by running the code:
+We can tell this question only happens if **go_in is "n"** because everything under it is **indented**. Indenting improperly can cause errors in the code. We can see here we test three directions. First **fill in new responses** by modifying the code for each direction. Test your new responses by running the code:
 
 ```
 python text_adventure_game.py 
