@@ -73,7 +73,4 @@ if go_in is "y":
     print("What happens? You decide...")    
 ```
 
-**Try replacing the print statement by writing your own if statement. Remember that we will be comparing the *variable pick_lock* which holds the string input from the user to look for our two outcomes ("y" or "n").:
-
-
-Try adding a third outcome if the user enters a bad input as an else statement, this will catch any input that isn't "y" or "n".**
+**Try replacing the print statement by writing your own if statement. Remember that we will be comparing the *variable pick_lock* which holds the string input from the user to look for our two outcomes ("y" or "n"). Try adding a third outcome if the user enters a bad input as an else statement, this will catch any input that isn't "y" or "n".**
