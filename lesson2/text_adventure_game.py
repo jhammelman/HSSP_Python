@@ -9,13 +9,13 @@ if go_in is "y":
     print("What happens? You decide...")    
 elif go_in is "n":
     direction = raw_input("You decide to go home, but you've forgotten the way! Do you go left, right, or straight? (left,right,straight) ")
-    if direction == "left":
+    if direction is "left":
         # enter your code here to continue the story
         print("What happens? You decide...")
-    elif direction == "right":
+    elif direction is "right":
         # enter your code here to continue the story
         print("What happens? You decide...")
-    elif direction == "straight":
+    elif direction is "straight":
         # enter your code here to continue the story
         print("What happens? You decide...")
     else:
