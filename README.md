@@ -42,15 +42,15 @@ Now we can see there is an if statement based on the *variable go_in* which stor
 If the user responds with a "n" to opening the gate, there is a second question and responses. **What are the potential user responses? How does the computer respond?**
 
 ```python
-elif go_in is "n":
+elif go_in == "n":
     direction = raw_input("You decide to go home, but you've forgotten the way! Do you go left, right, or straight? (left,right,straight) ")
-    if direction is "left":
+    if direction == "left":
         # enter your code here to continue the story
         print("What happens? You decide...")
-    elif direction is "right":
+    elif direction == "right":
         # enter your code here to continue the story
         print("What happens? You decide...")
-    elif direction is "straight":
+    elif direction == "straight":
         # enter your code here to continue the story
         print("What happens? You decide...")
     else:
@@ -66,7 +66,7 @@ python text_adventure_game.py
 You may have noticed if you decide to open the gate and you get a choice to pick the lock, but nothing happens! This is the section of code:
 
 ```python
-if go_in is "y":
+if go_in == "y":
     print("You yank on the gate, but the large gold lock won't budge.")
     pick_lock = raw_input("Do you try to pick the lock? (y or n) ")
     # enter your if statement here to decide what happens if you try to pick the lock
