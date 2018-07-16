@@ -9,7 +9,7 @@ Running the game templates and game example relies on the [Pygame](https://www.p
 If you are looking to program without having to install Python on your computer, we recommend using the [www.learnpython.org](https://www.learnpython.org/) which is an interactive tutorial that covers many of the same topics as we will in the course.
 
 
-## Instructions for July 16th class (while loops and booleans)
+## Instructions for July 21st class (while loops and booleans)
 
 First a reminder on if statements. An if statement allows us to take different actions based on the value of a variable (in our case the user input). Python interprets any code that is *indented* beneath an if statement as happening if that statement is true. An example is:
 
