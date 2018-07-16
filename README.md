@@ -9,16 +9,114 @@ Running the game templates and game example relies on the [Pygame](https://www.p
 If you are looking to program without having to install Python on your computer, we recommend using the [www.learnpython.org](https://www.learnpython.org/) which is an interactive tutorial that covers many of the same topics as we will in the course.
 
 
-## Instructions for July 14th class (If/Else statements)
+## Instructions for July 16th class (while loops and booleans)
 
-Using the green button, download the code to your computer. Extract the folder saying yes to all the prompts. Inside the extracted HSSP_Python-master folder, drag the lesson 2 folder to the desktop.
+First a reminder on if statements. An if statement allows us to take different actions based on the value of a variable (in our case the user input). Python interprets any code that is *indented* beneath an if statement as happening if that statement is true. An example is:
 
-Find your terminal. It should already be up as a black screen on your computer, if it's not use the search feature to open it.
+```python
+ans = raw_input("Do you want to play a game? ")
+if ans == "yes":
+   print("Great let's get started.")
+elif ans == "no":
+     print("OK maybe next time.")
+else:
+     print("Bad input!")
+```
+
+We can use this to create really in depth programs.
+
+
+```python
+ans = raw_input("Do you want to play a game? ")
+if ans == "yes":
+   print("Great let's get started.")
+   ans = raw_input("There are three doors, one is red, one is blue and one is yellow, which do you open? (r,y,b) ")
+   if ans == "r":
+      print("Behind the red door is a red panda!")
+   elif ans == "b":
+      print("Behind the blue door is a dolphin!")
+   elif ans == "y":
+      print("Behind the yellow door is a giraffe!")
+   else:
+      print("Bad input!")
+elif ans == "no":
+     print("OK maybe next time.")
+else:
+     print("Bad input!")
+```
+
+We can keep adding if statements by indenting the text below the current if statement to keep the story going.
+
+#This week's new information
+
+First we introduce a new variable type called a **bool**. It's simply a variable that stores one of two values: **True** or **False**, with the exact capitalization as shown here. An example:
+
+```python
+brushed_teeth = True
+drank_juice = True
+if brushed_teeth and drank_juice:
+   print("That's disgusting")
+elif drank_juice:
+   print("Good vitamin C")
+elif brushed_teeth:
+   print("Good dental hygene")
+else:
+   print("You should brush your teeth and drink juice!")
+```
+
+Under the hood, our comparisons using ==,<=,>=,>,< that we covered last class get *evaluated* to become bool values of True or False.
+
+```python
+brushed_teeth = raw_input("Did you brush your teeth? ")
+drank_juice = raw_input("Did you drink juice? ")
+juice_taste_bad = brushed_teeth == "y" and drank_juice == "y"
+```
+The value of the variable juice_taste_bad is True if you drank juice and brushed your teeth and False otherwise
+
+
+If you recall from last class, if the user gave wrong input they get kicked out of the game. This isn't very nice - what if they were close to the end? We want to let them re-type their input if they type the wrong thing. This is where the programming technique of loops can be useful. We will be covering **while loops**.
+
+while loops repeat something while their condition is True. For example, this will print the numbers from 1 to 10.
+```python
+i = 1
+while i <= 10:
+      print(i)
+      i = i + 1
+
+```
+
+We can also break out of the loop which is often useful in game-style programming, what will this example print?
+
+```python
+i = 1
+while i <= 10:
+      print(i)
+      i = i + 1
+      if i == 3:
+      	 break
+      print("stil counting...")
+```
+
+```
+1
+stil counting...
+2
+```
+
+It only prints the numbers 1 and 2 because we put a break statement when i gets to 3. Also it only prints "still counting..." once because anything inside the while loop after the break statement won't happen. Literally the break statement leaves the loop at that exact point in the code.
+
+
+
+#Coding instructions
+
+Using the green button, download the code to your computer. Extract the folder saying yes to all the prompts. Inside the extracted HSSP_Python-master folder, drag the lesson3 folder to the desktop.
+
+Find your terminal. It should already be up as a black screen on your computer, if it's not you can search the computer to open it.
 
 Now type into the terminal:
 
 ```
-cd ~/Desktop/lesson2
+cd ~/Desktop/lesson3
 ```
 
 Remember that computers are picky, so all the characters should be the exact case and spacing.
@@ -28,49 +126,41 @@ Now we can run the code from inside the folder, type into the terminal:
 python text_adventure_game.py 
 ```
 
-Enter commands at the appropriate prompts. What happens if you don't follow the instructions? Try typing "yes" instead of "y".
+This is an empty template so you can start making your own text adventure game. We will use both if statements and while loops.
 
-Now we can take a look at the code. Type once again into the terminal
+There are two ways to use while statements to make your code better which we talked about in the lesson
+
+```python
+ans = “”
+while ans != “yes” and ans != “no”:
+   ans = raw_input(“Do you want to play? (yes or no)”)
+   if ans == “yes”:
+      print(“Great”)
+   elif ans == “no”:
+      print(“to bad”)
+   else:
+      print(“bad input! please say yes or no”)
+
+```
+
+```python
+ans = “”
+while True:
+   ans = raw_input(“Do you want to play? (yes or no)”)
+   if ans == “yes”:
+      print(“Great”)
+      break
+   elif ans == “no”:
+      print(“to bad”)
+      break
+   else:
+      print(“bad input! please say yes or no”)
+```
+
+Now we can take a look at the code. Type once again go to the terminal
 
 ```
 gvim text_adventure_game.py 
 ```
 
-Now we can see there is an if statement based on the *variable go_in* which stores the users' response to opening the gate. **What are the potential user responses? How does the computer respond?**
-
-
-If the user responds with a "n" to opening the gate, there is a second question and responses. **What are the potential user responses? How does the computer respond?**
-
-```python
-elif go_in == "n":
-    direction = raw_input("You decide to go home, but you've forgotten the way! Do you go left, right, or straight? (left,right,straight) ")
-    if direction == "left":
-        # enter your code here to continue the story
-        print("What happens? You decide...")
-    elif direction == "right":
-        # enter your code here to continue the story
-        print("What happens? You decide...")
-    elif direction == "straight":
-        # enter your code here to continue the story
-        print("What happens? You decide...")
-    else:
-        print("Invalid input! You can't play :p")        
-
-```
-
-We can tell the question about which way to turn only happens if the variable go_in is "n" because everything under it is *indented*. Indenting improperly can cause errors in the code. We can see here we test three directions. **First fill in new responses by modifying the code for each direction. Test your new responses by running the code:**
-
-```
-python text_adventure_game.py 
-```
-You may have noticed if you decide to open the gate and you get a choice to pick the lock, but nothing happens! This is the section of code:
-
-```python
-if go_in == "y":
-    print("You yank on the gate, but the large gold lock won't budge.")
-    pick_lock = raw_input("Do you try to pick the lock? (y or n) ")
-    # enter your if statement here to decide what happens if you try to pick the lock
-    print("What happens? You decide...")    
-```
-
-**Try replacing the print statement by writing your own if statement. Remember that we will be comparing the *variable pick_lock* which holds the string input from the user to look for our two outcomes ("y" or "n"). Try adding a third outcome if the user enters a bad input as an else statement, this will catch any input that isn't "y" or "n".**
+Try adding a while statement and an if statement to start your text adventure game. 
