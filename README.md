@@ -47,7 +47,7 @@ else:
 
 We can keep adding if statements by indenting the text below the current if statement to keep the story going.
 
-#This week's new information
+#### This week's new information
 
 First we introduce a new variable type called a **bool**. It's simply a variable that stores one of two values: **True** or **False**, with the exact capitalization as shown here. An example:
 
@@ -107,7 +107,7 @@ It only prints the numbers 1 and 2 because we put a break statement when i gets 
 
 
 
-#Coding instructions
+#### Coding instructions
 
 Using the green button, download the code to your computer. Extract the folder saying yes to all the prompts. Inside the extracted HSSP_Python-master folder, drag the lesson3 folder to the desktop.
 
