@@ -131,30 +131,30 @@ This is an empty template so you can start making your own text adventure game. 
 There are two ways to use while statements to make your code better which we talked about in the lesson
 
 ```python
-ans = “”
-while ans != “yes” and ans != “no”:
-   ans = raw_input(“Do you want to play? (yes or no)”)
-   if ans == “yes”:
-      print(“Great”)
-   elif ans == “no”:
-      print(“to bad”)
+ans = ""
+while ans != "yes" and ans != "no":
+   ans = raw_input("Do you want to play? (yes or no)")
+   if ans == "yes":
+      print("Great")
+   elif ans == "no":
+      print("to bad")
    else:
-      print(“bad input! please say yes or no”)
+      print("bad input! please say yes or no")
 
 ```
 
 ```python
 ans = “”
 while True:
-   ans = raw_input(“Do you want to play? (yes or no)”)
-   if ans == “yes”:
-      print(“Great”)
+   ans = raw_input("Do you want to play? (yes or no)")
+   if ans == "yes":
+      print("Great")
       break
-   elif ans == “no”:
-      print(“to bad”)
+   elif ans == "no":
+      print("to bad")
       break
    else:
-      print(“bad input! please say yes or no”)
+      print("bad input! please say yes or no")
 ```
 
 Now we can take a look at the code. Type once again go to the terminal
