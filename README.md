@@ -9,78 +9,30 @@ Running the game templates and game example relies on the [Pygame](https://www.p
 If you are looking to program without having to install Python on your computer, we recommend using the [www.learnpython.org](https://www.learnpython.org/) which is an interactive tutorial that covers many of the same topics as we will in the course.
 
 
-## Instructions for July 21st class (while loops and booleans)
+## Instructions for July 27th class (intro to pygame)
 
-First a reminder on if statements. An if statement allows us to take different actions based on the value of a variable (in our case the user input). Python interprets any code that is *indented* beneath an if statement as happening if that statement is true. An example is:
+First a reminder on bools. Bools are a variable type that stores one of two values: **True** or **False**, with the exact capitalization as shown here. An example:
 
 ```python
-ans = raw_input("Do you want to play a game? ")
-if ans == "yes":
-   print("Great let's get started.")
-elif ans == "no":
-     print("OK maybe next time.")
+takes_class = True
+loves_code = True
+if takes_class and loves_code:
+   print("Glad you're having fun")
+elif takes_class:
+   print("Hopefully you can learn to like code")
+elif loves_code:
+   print("You should take our class")
 else:
-     print("Bad input!")
+   print("You should take our class and learn to love code!")
 ```
 
-We can use this to create really in depth programs.
+We also talked about **while loops**.
 
-
-```python
-ans = raw_input("Do you want to play a game? ")
-if ans == "yes":
-   print("Great let's get started.")
-   ans = raw_input("There are three doors, one is red, one is blue and one is yellow, which do you open? (r,y,b) ")
-   if ans == "r":
-      print("Behind the red door is a red panda!")
-   elif ans == "b":
-      print("Behind the blue door is a dolphin!")
-   elif ans == "y":
-      print("Behind the yellow door is a giraffe!")
-   else:
-      print("Bad input!")
-elif ans == "no":
-     print("OK maybe next time.")
-else:
-     print("Bad input!")
-```
-
-We can keep adding if statements by indenting the text below the current if statement to keep the story going.
-
-#### This week's new information
-
-First we introduce a new variable type called a **bool**. It's simply a variable that stores one of two values: **True** or **False**, with the exact capitalization as shown here. An example:
-
-```python
-brushed_teeth = True
-drank_juice = True
-if brushed_teeth and drank_juice:
-   print("That's disgusting")
-elif drank_juice:
-   print("Good vitamin C")
-elif brushed_teeth:
-   print("Good dental hygene")
-else:
-   print("You should brush your teeth and drink juice!")
-```
-
-Under the hood, our comparisons using ==,<=,>=,>,< that we covered last class get *evaluated* to become bool values of True or False.
-
-```python
-brushed_teeth = raw_input("Did you brush your teeth? ")
-drank_juice = raw_input("Did you drink juice? ")
-juice_taste_bad = brushed_teeth == "y" and drank_juice == "y"
-```
-The value of the variable juice_taste_bad is True if you drank juice and brushed your teeth and False otherwise
-
-
-If you recall from last class, if the user gave wrong input they get kicked out of the game. This isn't very nice - what if they were close to the end? We want to let them re-type their input if they type the wrong thing. This is where the programming technique of loops can be useful. We will be covering **while loops**.
-
-while loops repeat something while their condition is True. For example, this will print the numbers from 1 to 10.
+while loops repeat something while their condition is True. For example, this will print hello 10 times.
 ```python
 i = 1
 while i <= 10:
-      print(i)
+      print("hello!")
       i = i + 1
 
 ```
@@ -91,32 +43,75 @@ We can also break out of the loop which is often useful in game-style programmin
 i = 1
 while i <= 10:
       print(i)
-      i = i + 1
-      if i == 3:
+      i = i+1
+      if i == 5:
       	 break
-      print("stil counting...")
 ```
 
 ```
 1
-stil counting...
 2
+3
+4
 ```
 
-It only prints the numbers 1 and 2 because we put a break statement when i gets to 3. Also it only prints "still counting..." once because anything inside the while loop after the break statement won't happen. Literally the break statement leaves the loop at that exact point in the code.
+It only prints the numbers 1 through 4 because we put a break statement when i gets to 5. 
 
+#### New material
 
+Today we will be learning about pygame. Pygame is a library which you can use to write games in python. Python has a lot of libraries for different purposes. To get a library we have to install it. Once a library is installed, we can tell our code we'll be using that library:
 
+```python
+import pygame
+```
+
+We'll also be using the time library to spawn new events:
+
+```python
+import time
+```
+Using pygame isn't that different from our text adventure game. One difference is that we write our main code in a **game loop**, which uses **while loops** and **Bools**.
+
+```python
+import pygame
+
+pygame.init()
+
+while True:
+  # We will write anything we want to happen in game code here
+  pygame.display.update() 
+```
+
+We update the display at the end of our while loop, which tells pygame to redraw our screen with any updates inside our loop
+In any graphical game, we have a screen, and objects on the screen. In pygame we define these:
+
+```python
+import pygame
+
+pygame.init()
+
+# Define the screen
+width = 640
+height = 460
+screen = pygame.display.set_mode((width, height))
+screen.fill((255,255,255))
+main_clock = pygame.time.Clock()
+
+while True:
+  # We will write anything we want to happen in game code here
+  pygame.display.update() 
+
+```
 #### Coding instructions
 
-Using the green button, download the code to your computer. Extract the folder saying yes to all the prompts. Inside the extracted HSSP_Python-master folder, drag the lesson3 folder to the desktop.
+Using the green button, download the code to your computer. Extract the folder saying yes to all the prompts. Inside the extracted HSSP_Python-master folder, drag the lesson4 folder to the desktop.
 
 Find your terminal. It should already be up as a black screen on your computer, if it's not you can search the computer to open it.
 
 Now type into the terminal:
 
 ```
-cd ~/Desktop/lesson3
+cd ~/Desktop/lesson4
 ```
 
 Remember that computers are picky, so all the characters should be the exact case and spacing.
