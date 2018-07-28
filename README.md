@@ -9,7 +9,7 @@ Running the game templates and game example relies on the [Pygame](https://www.p
 If you are looking to program without having to install Python on your computer, we recommend using the [www.learnpython.org](https://www.learnpython.org/) which is an interactive tutorial that covers many of the same topics as we will in the course.
 
 
-## Instructions for July 27th class (intro to pygame)
+## Instructions for July 28th class (intro to pygame)
 
 First a reminder on bools. Bools are a variable type that stores one of two values: **True** or **False**, with the exact capitalization as shown here. An example:
 
