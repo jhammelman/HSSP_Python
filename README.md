@@ -170,9 +170,12 @@ while True:
 
 #### Coding instructions
 
-First we have to install pygame.
+Using the green button, download this code to your computer. Extract the folder saying yes to all the prompts. Inside the extracted HSSP_Python-master folder, drag the lesson4 folder to the desktop.
+
+Now we have to install pygame.
 
 Find your terminal. It should already be up as a black screen on your computer, if it's not you can search the computer to open it.
+
 
 Now type into the terminal:
 
@@ -186,12 +189,16 @@ Now our first goal is to build a simple player controlled by arrow keys.
 In the terminal type: 
 
 ```
-cd ~/Desktop
+cd ~/Desktop/lesson4
 
-gvim my_game.py
+gvim game.py
 ```
 
-Start by writing this code to control a player moving. Reference earlier sections to understand how the code works:
+You should see the code to control a player moving. This is a basic game loop, with a player that you can control with the left and right arrow keys.
+
+We have defined the player as a pygame.Rect which is an object that we can command to move using player.x and player.y
+We can also get the position of the player on the screen using player.top, player.left, player.right, player.bottom
+
 
 ```python
 import pygame
@@ -234,9 +241,13 @@ while True:
 
 ```
 
-One thing you will notice is if you hold down on the key, the player doesn't move. There is a way to fix this:
+Now run the code in the terminal using
 
-add the line to the beginning of your code before your game loop but after the imports and pygame.init()
+```
+python game.py
+```
+
+You should be able to move the box to the left and right on the screen. One thing you will notice is if you hold down on the key, the player doesn't move. There is a way to fix this add the line to the beginning of your code before your game loop but after the imports and pygame.init()
 
 ```python
 pygame.key.set_repeat(100,50)
@@ -248,5 +259,6 @@ But now try moving to the left. Eventually our character moves off the screen. H
 
 Try modifying the code so that our character can't move off the screen.
 
+Here's a hint - think about adding another comparison to the if statements where our player can move so they can't move off the screen.
 
-
+The answer is in game2.py
