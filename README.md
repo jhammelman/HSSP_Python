@@ -65,11 +65,23 @@ Today we will be learning about pygame. Pygame is a library which you can use to
 import pygame
 ```
 
-We'll also be using the time library to spawn new events:
+If we want to access commands and variables from that library we put pygame in front, for example:
 
 ```python
-import time
+import pygame
+pygame.display.set_mode((400,200))
 ```
+
+This will set up a screen for our game.
+
+We can also import specific parts of the pygame library, for example:
+
+```python
+from pygame.locals import *
+```
+
+Imports anything from pygame.locals which we will use to import testing key commands.
+
 Using pygame isn't that different from our text adventure game. One difference is that we write our main code in a **game loop**, which uses **while loops** and **Bools**.
 
 ```python
@@ -97,65 +109,144 @@ screen = pygame.display.set_mode((width, height))
 screen.fill((255,255,255))
 main_clock = pygame.time.Clock()
 
+# Define the player x,y,width,height
+player = pygame.Rect(300,400,60,60)
+
 while True:
-  # We will write anything we want to happen in game code here
-  pygame.display.update() 
+   # We will write anything we want to happen in game code here
+   screen.fill((255,255,255)) #draw screen
+   pygame.draw.rect(screen, (0,0,0), player) #draw player
+   #Ensure constant frames/s
+   main_clock.tick(50)
+
+   pygame.display.update() 
 
 ```
+
+You'll also notice we have some additional features. The **main_clock** variable is used to determine our frames/s for display.
+
+Now pygame also has the ability to get commands from the keyboard:
+
+```python
+import pygame
+import sys
+from pygame.locals import *
+
+pygame.init()
+
+# Define the screen
+width = 640
+height = 460
+screen = pygame.display.set_mode((width, height))
+screen.fill((255,255,255))
+main_clock = pygame.time.Clock()
+
+# Define the player x,y,width,height
+player = pygame.Rect(300,400,60,60)
+
+player_speed=3
+while True:
+   # We will write anything we want to happen in game code here
+
+   # Commands from keyboard
+   for event in pygame.event.get():
+       if event.type == QUIT:
+       	  pygame.quit()
+	  sys.exit()
+       #check for pressing down on a key
+       if event.type == KEYDOWN:
+       	  if event.key == K_LEFT:
+	     player.x -= player_speed
+	  if event.key == K_RIGHT:
+	     player.x += player_speed
+   screen.fill((255,255,255)) #draw screen
+   pygame.draw.rect(screen, (0,0,0), player) #draw player
+   #Ensure constant frames/s
+   main_clock.tick(50)
+
+   pygame.display.update() 
+
+```
+
 #### Coding instructions
 
-Using the green button, download the code to your computer. Extract the folder saying yes to all the prompts. Inside the extracted HSSP_Python-master folder, drag the lesson4 folder to the desktop.
+First we have to install pygame.
 
 Find your terminal. It should already be up as a black screen on your computer, if it's not you can search the computer to open it.
 
 Now type into the terminal:
 
 ```
-cd ~/Desktop/lesson4
+sudo apt-get install python-pygame
 ```
 
 Remember that computers are picky, so all the characters should be the exact case and spacing.
-Now we can run the code from inside the folder, type into the terminal:
+Now our first goal is to build a simple player controlled by arrow keys.
+
+In the terminal type: 
 
 ```
-python text_adventure_game.py 
+cd ~/Desktop
+
+gvim my_game.py
 ```
 
-This is an empty template so you can start making your own text adventure game. We will use both if statements and while loops.
-
-There are two ways to use while statements to make your code better which we talked about in the lesson
+Start by writing this code to control a player moving. Reference earlier sections to understand how the code works:
 
 ```python
-ans = ""
-while ans != "yes" and ans != "no":
-   ans = raw_input("Do you want to play? (yes or no)")
-   if ans == "yes":
-      print("Great")
-   elif ans == "no":
-      print("to bad")
-   else:
-      print("bad input! please say yes or no")
+import pygame
+import sys
+from pygame.locals import *
 
-```
+pygame.init()
 
-```python
-ans = “”
+# Define the screen
+width = 640
+height = 460
+screen = pygame.display.set_mode((width, height))
+screen.fill((255,255,255))
+main_clock = pygame.time.Clock()
+
+# Define the player x,y,width,height
+player = pygame.Rect(300,400,60,60)
+
+player_speed=20
 while True:
-   ans = raw_input("Do you want to play? (yes or no)")
-   if ans == "yes":
-      print("Great")
-      break
-   elif ans == "no":
-      print("to bad")
-      break
-   else:
-      print("bad input! please say yes or no")
+   # We will write anything we want to happen in game code here
+
+   # Commands from keyboard
+   for event in pygame.event.get():
+       if event.type == QUIT:
+       	  pygame.quit()
+	  sys.exit()
+       #check for pressing down on a key
+       if event.type == KEYDOWN:
+       	  if event.key == K_LEFT:
+	     player.x -= player_speed
+	  if event.key == K_RIGHT:
+	     player.x += player_speed
+   screen.fill((255,255,255)) #draw screen
+   pygame.draw.rect(screen, (0,0,0), player) #draw player
+   #Ensure constant frames/s
+   main_clock.tick(50)
+
+   pygame.display.update() 
+
 ```
 
-Now we can take a look at the code. Type once again go to the terminal
+One thing you will notice is if you hold down on the key, the player doesn't move. There is a way to fix this:
 
-```
-gvim text_adventure_game.py 
+add the line to the beginning of your code before your game loop but after the imports and pygame.init()
+
+```python
+pygame.key.set_repeat(100,50)
 ```
 
-Try adding a while statement and an if statement to start your text adventure game. 
+Now when keys are held down they will generate multiple pygame.KEYDOWN events so we will move.
+
+But now try moving to the left. Eventually our character moves off the screen. How can we fix this? Brainstorm with a neighbor.
+
+Try modifying the code so that our character can't move off the screen.
+
+
+
