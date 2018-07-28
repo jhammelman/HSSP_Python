@@ -261,4 +261,3 @@ Try modifying the code so that our character can't move off the screen.
 
 Here's a hint - think about adding another comparison to the if statements where our player can move so they can't move off the screen.
 
-The answer is in game2.py
