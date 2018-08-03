@@ -11,236 +11,185 @@ If you are looking to program without having to install Python on your computer,
 
 ## Instructions for August 4th class (for loops and lists)
 
-Today we will talk about **for** loops and **lists** in python.
+Today we will talk about  **lists** and **for** loops in python.
 
-First we'll talk about **lists**. This is a new type of variable that can hold multiple things. We can make an empty list using brackets:
-```python 
+###Lists
+First we'll talk about **lists**. This is a new type of variable that can hold multiple things (called elements). We can make an empty list using brackets:
+```python
+mylist = []
 ```
+
+We can make a list that has elements, separated by commas:
+```python
+mylist = ["item1","item2"] #this list has two strings inside it
+```
+
+
+We can add things to our list:
+
+```python
+mylist = []
+mylist.append("item")
+print(mylist) #list has one object, "item"
+```
+
+We can check how many things are inside our list:
+```python
+mylist = []
+mylist.append("item1")
+print(len(mylist)) #len(mylist) is 1
+mylist.append("item2")
+print(mylist) #list has two object, an item1 and item2
+print(len(mylist)) #len(mylist) is 2
+```
+
+We can check if something is in our list:
+```python
+mylist = []
+mylist.append("item1")
+if "item1" in mylist:
+   print("List contains item1")
+if "item2" in mylist:
+   print("List contains item2")
+```
+Only "List contains item1" will be printed because we didn't add item2 to our lists.
+
+Lists can have items from any variable type: ints, floats, bools, strings, or lists!
+```python
+myintlist = [1,2,3]
+myfloatlist = [1.0,1.1,1.2]
+myboollist = [True,True,False]
+mystringlist = ["item1","item2"]
+mylistlist = [[1,2,3],[4,5,6]]
+```
+
+We can get specific elements from a list, by **indexing**. In python the first element in the list **starts at zero**:
+```python
+mylist = ["milk","juice","eggs"]
+print(mylist[0]) #will print the first element, milk
+print(mylist[1]) #will print the second element, juice
+print(mylist[2]) #will print the third element, eggs
+```
+
+One very useful feature is to create a set of numbers (maybe you want a list of the numbers 1 through 10, we can get this using the **range** command:
+```python
+numbers1to10 = range(1,11)
+print(numbers1to10) # this is a list of the numbers 1 through 10
+```
+
+Notice to get numbers 1 thorough 10, we actually have to tell the range we want the numbers starting at 1 and stopping before 11.
+
+###For loops
 We are adding **for** loops to our toolbox, in addition to **while** loops and **if** statements.
 
-for loops iterate over
-
-We can also break out of the loop which is often useful in game-style programming, what will this example print?
+for loops iterate over a list, with a specific synatax:
 
 ```python
-i = 1
-while i <= 10:
-      print(i)
-      i = i+1
-      if i == 5:
-      	 break
+mylist = ["milk","juice","eggs"]
+for item in mylist:
+    print(item) 
 ```
+We write the keyword **for**, then a **variable** where we will store the elements the the keyword **in**, then our list that we want to iterate over.
 
-```
-1
-2
-3
-4
-```
-
-It only prints the numbers 1 through 4 because we put a break statement when i gets to 5. 
-
-#### New material
-
-Today we will be learning about pygame. Pygame is a library which you can use to write games in python. Python has a lot of libraries for different purposes. To get a library we have to install it. Once a library is installed, we can tell our code we'll be using that library:
-
-```python
-import pygame
-```
-
-If we want to access commands and variables from that library we put pygame in front, for example:
-
-```python
-import pygame
-pygame.display.set_mode((400,200))
-```
-
-This will set up a screen for our game.
-
-We can also import specific parts of the pygame library, for example:
-
-```python
-from pygame.locals import *
-```
-
-Imports anything from pygame.locals which we will use to import testing key commands.
-
-Using pygame isn't that different from our text adventure game. One difference is that we write our main code in a **game loop**, which uses **while loops** and **Bools**.
-
-```python
-import pygame
-
-pygame.init()
-
-while True:
-  # We will write anything we want to happen in game code here
-  pygame.display.update() 
-```
-
-We update the display at the end of our while loop, which tells pygame to redraw our screen with any updates inside our loop
-In any graphical game, we have a screen, and objects on the screen. In pygame we define these:
-
-```python
-import pygame
-
-pygame.init()
-
-# Define the screen
-width = 640
-height = 460
-screen = pygame.display.set_mode((width, height))
-screen.fill((255,255,255))
-main_clock = pygame.time.Clock()
-
-# Define the player x,y,width,height
-player = pygame.Rect(300,400,60,60)
-
-while True:
-   # We will write anything we want to happen in game code here
-   screen.fill((255,255,255)) #draw screen
-   pygame.draw.rect(screen, (0,0,0), player) #draw player
-   #Ensure constant frames/s
-   main_clock.tick(50)
-
-   pygame.display.update() 
-
-```
-
-You'll also notice we have some additional features. The **main_clock** variable is used to determine our frames/s for display.
-
-Now pygame also has the ability to get commands from the keyboard:
-
-```python
-import pygame
-import sys
-from pygame.locals import *
-
-pygame.init()
-
-# Define the screen
-width = 640
-height = 460
-screen = pygame.display.set_mode((width, height))
-screen.fill((255,255,255))
-main_clock = pygame.time.Clock()
-
-# Define the player x,y,width,height
-player = pygame.Rect(300,400,60,60)
-
-player_speed=3
-while True:
-   # We will write anything we want to happen in game code here
-
-   # Commands from keyboard
-   for event in pygame.event.get():
-       if event.type == QUIT:
-       	  pygame.quit()
-	  sys.exit()
-       #check for pressing down on a key
-       if event.type == KEYDOWN:
-       	  if event.key == K_LEFT:
-	     player.x -= player_speed
-	  if event.key == K_RIGHT:
-	     player.x += player_speed
-   screen.fill((255,255,255)) #draw screen
-   pygame.draw.rect(screen, (0,0,0), player) #draw player
-   #Ensure constant frames/s
-   main_clock.tick(50)
-
-   pygame.display.update() 
-
-```
 
 #### Coding instructions
 
-Using the green button, download this code to your computer. Extract the folder saying yes to all the prompts. Inside the extracted HSSP_Python-master folder, drag the lesson4 folder to the desktop.
-
-Now we have to install pygame.
-
-Find your terminal. It should already be up as a black screen on your computer, if it's not you can search the computer to open it.
-
-
-Now type into the terminal:
-
-```
-sudo apt-get install python-pygame
-```
-
-Remember that computers are picky, so all the characters should be the exact case and spacing.
-Now our first goal is to build a simple player controlled by arrow keys.
+Drag your lesson4 folder from your flashdrive to the desktop.
 
 In the terminal type: 
 
 ```
 cd ~/Desktop/lesson4
 
-gvim game.py
-```
-
-You should see the code to control a player moving. This is a basic game loop, with a player that you can control with the left and right arrow keys.
-
-We have defined the player as a pygame.Rect which is an object that we can command to move using player.x and player.y
-We can also get the position of the player on the screen using player.top, player.left, player.right, player.bottom
-
-
-```python
-import pygame
-import sys
-from pygame.locals import *
-
-pygame.init()
-
-# Define the screen
-width = 640
-height = 460
-screen = pygame.display.set_mode((width, height))
-screen.fill((255,255,255))
-main_clock = pygame.time.Clock()
-
-# Define the player x,y,width,height
-player = pygame.Rect(300,400,60,60)
-
-player_speed=20
-while True:
-   # We will write anything we want to happen in game code here
-
-   # Commands from keyboard
-   for event in pygame.event.get():
-       if event.type == QUIT:
-       	  pygame.quit()
-	  sys.exit()
-       #check for pressing down on a key
-       if event.type == KEYDOWN:
-       	  if event.key == K_LEFT:
-	     player.x -= player_speed
-	  if event.key == K_RIGHT:
-	     player.x += player_speed
-   screen.fill((255,255,255)) #draw screen
-   pygame.draw.rect(screen, (0,0,0), player) #draw player
-   #Ensure constant frames/s
-   main_clock.tick(50)
-
-   pygame.display.update() 
-
-```
-
-Now run the code in the terminal using
-
-```
 python game.py
 ```
 
-You should be able to move the box to the left and right on the screen. One thing you will notice is if you hold down on the key, the player doesn't move. There is a way to fix this add the line to the beginning of your code before your game loop but after the imports and pygame.init()
+You should see the code to control a player moving. This is a basic game loop, with a player that you can control with the left and right arrow keys. If this doesn't work, it may be that pygame isn't installed:
 
-```python
-pygame.key.set_repeat(100,50)
+Type into the terminal:
+```
+sudo apt-get install python-pygame
+```
+and respond yes to any prompts.
+
+But now try moving to the left. Eventually our character moves off the screen. How can we fix this? We attempted this last week.
+
+Before moving on to this week's task, make sure your player can't move to the left or the right all the way off the screen. Open the code with:
+
+```
+gvim game.py
 ```
 
-Now when keys are held down they will generate multiple pygame.KEYDOWN events so we will move.
+Remember our player's position can be checked with:
 
-But now try moving to the left. Eventually our character moves off the screen. How can we fix this? Brainstorm with a neighbor.
+```python
+player.left
+player.right
+player.top
+player.botton
+```
 
-Try modifying the code so that our character can't move off the screen.
+Ok now we will add falling objects to create an avoider-style game. Open your game.py code:
+```
+gvim game.py
+```
 
-Here's a hint - think about adding another comparison to the if statements where our player can move so they can't move off the screen.
 
+After the line:
+
+```python
+# Define the player x,y,width,height
+player = pygame.Rect(300,400,60,60)
+
+```
+
+Add a new line:
+
+```python
+all_objects = [] #empty objects list
+
+```
+
+Now directly below that line will add an object to the list:
+
+```python
+pos_x = 100 #x screen position
+pos_y = -10 #y screen position make the circle off screen
+obj = pygame.draw.circle((screen),(0,0,0),(pos_x,pos_y),20,0)
+all_objects.append(obj) 
+```
+
+Now we actually have to draw these objects in our **game loop**, after the line:
+```python
+    pygame.draw.rect(screen, (0,0,0), player) #draw player
+```
+add the new lines:
+```python
+    for obj in all_objects:
+    	obj.y += 3 # object is falling
+	if obj.y >= height: #check if object off the screen
+            obj.y = -10
+        obj = pygame.draw.circle((screen), (0, 0, 0),
+				 (obj.x, obj.y),
+				 20,1)
+```
+
+If you run the code, you should see a circle fall from the top of the screen. On your own,
+try adding a few more circles by appending them to the all_objects. Try varying the x and
+y positions.
+
+Now nothing happens currently if your player touches the circle. To make the player die if he hits a circle, we can add to our object for loop, under the line:
+```python
+     for obj in all_objects:
+```
+add:
+```python
+    #Test collisions with the bubbles
+    if obj.colliderect(player):
+       all_objects.remove(obj)
+       pygame.quit()
+       sys.exit()
+
+```
+
+You've made your first game! 
