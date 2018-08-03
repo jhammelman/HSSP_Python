@@ -9,16 +9,33 @@ Running the game templates and game example relies on the [Pygame](https://www.p
 If you are looking to program without having to install Python on your computer, we recommend using the [www.learnpython.org](https://www.learnpython.org/) which is an interactive tutorial that covers many of the same topics as we will in the course.
 
 
-## Instructions for August 4th class (for loops and lists)
+## Instructions for July 28th class (intro to pygame)
 
-Today we will talk about **for** loops and **lists** in python.
+First a reminder on bools. Bools are a variable type that stores one of two values: **True** or **False**, with the exact capitalization as shown here. An example:
 
-First we'll talk about **lists**. This is a new type of variable that can hold multiple things. We can make an empty list using brackets:
-```python 
+```python
+takes_class = True
+loves_code = True
+if takes_class and loves_code:
+   print("Glad you're having fun")
+elif takes_class:
+   print("Hopefully you can learn to like code")
+elif loves_code:
+   print("You should take our class")
+else:
+   print("You should take our class and learn to love code!")
 ```
-We are adding **for** loops to our toolbox, in addition to **while** loops and **if** statements.
 
-for loops iterate over
+We also talked about **while loops**.
+
+while loops repeat something while their condition is True. For example, this will print hello 10 times.
+```python
+i = 1
+while i <= 10:
+      print("hello!")
+      i = i + 1
+
+```
 
 We can also break out of the loop which is often useful in game-style programming, what will this example print?
 
