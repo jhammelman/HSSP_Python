@@ -9,11 +9,13 @@ Running the game templates and game example relies on the [Pygame](https://www.p
 If you are looking to program without having to install Python on your computer, we recommend using the [www.learnpython.org](https://www.learnpython.org/) which is an interactive tutorial that covers many of the same topics as we will in the course.
 
 
-## Instructions for August 4th class (for loops and lists)
+## Instructions for August 11th class (adding game and screen characters)
 
-Today we will talk about  **lists** and **for** loops in python.
+Today we will talk about how to customize a game. First we will review from last class.
 
-###Lists
+###Review
+
+####Lists
 First we'll talk about **lists**. This is a new type of variable that can hold multiple things (called elements). We can make an empty list using brackets:
 ```python
 mylist = []
@@ -24,35 +26,29 @@ We can make a list that has elements, separated by commas:
 mylist = ["item1","item2"] #this list has two strings inside it
 ```
 
-
 We can add things to our list:
 
 ```python
-mylist = []
-mylist.append("item")
-print(mylist) #list has one object, "item"
+backpack = []
+backpack.append("key")
+print(backpack) #list has one object, "key"
 ```
 
 We can check how many things are inside our list:
 ```python
-mylist = []
-mylist.append("item1")
-print(len(mylist)) #len(mylist) is 1
-mylist.append("item2")
-print(mylist) #list has two object, an item1 and item2
-print(len(mylist)) #len(mylist) is 2
+print(len(backpack)) #is 1
+backpack.append("antidote")
+print(backpack) #list has two objects, a key and an antidote
+print(len(backpack)) #len(backpack) is 2
 ```
 
 We can check if something is in our list:
 ```python
-mylist = []
-mylist.append("item1")
-if "item1" in mylist:
-   print("List contains item1")
-if "item2" in mylist:
-   print("List contains item2")
+if "key" in backpack:
+   print("You open the door with your key")
+   if "antidote" not in backpack:
+      print("The minute the door creaks open, a snake bites you. Since you don't have antidote you die.")
 ```
-Only "List contains item1" will be printed because we didn't add item2 to our lists.
 
 Lists can have items from any variable type: ints, floats, bools, strings, or lists!
 ```python
@@ -65,10 +61,10 @@ mylistlist = [[1,2,3],[4,5,6]]
 
 We can get specific elements from a list, by **indexing**. In python the first element in the list **starts at zero**:
 ```python
-mylist = ["milk","juice","eggs"]
-print(mylist[0]) #will print the first element, milk
-print(mylist[1]) #will print the second element, juice
-print(mylist[2]) #will print the third element, eggs
+backpack = ["sword","snack","dragon egg"]
+print(backpack[0]) #will print the first element, sword
+print(backpack[1]) #will print the second element, snack
+print(backpack[2]) #will print the third element, dragon egg
 ```
 
 One very useful feature is to create a set of numbers (maybe you want a list of the numbers 1 through 10, we can get this using the **range** command:
@@ -79,117 +75,120 @@ print(numbers1to10) # this is a list of the numbers 1 through 10
 
 Notice to get numbers 1 thorough 10, we actually have to tell the range we want the numbers starting at 1 and stopping before 11.
 
-###For loops
+####For loops
 We are adding **for** loops to our toolbox, in addition to **while** loops and **if** statements.
 
 for loops iterate over a list, with a specific synatax:
 
 ```python
-mylist = ["milk","juice","eggs"]
-for item in mylist:
+backpack = ["sword","snack","dragon egg"]
+for item in backpack:
     print(item) 
 ```
 We write the keyword **for**, then a **variable** where we will store the elements the the keyword **in**, then our list that we want to iterate over.
 
 
-#### Coding instructions
+###Coding instructions
+Using the green button, download this code to your computer. Extract the folder saying yes to all the prompts. Inside the extracted HSSP_Python-master folder, drag the lesson6 folder to the desktop. 
 
-Drag your lesson4 folder from your flashdrive to the desktop.
-
-In the terminal type: 
-
-```
-cd ~/Desktop/lesson4
-
-python game.py
-```
-
-You should see the code to control a player moving. This is a basic game loop, with a player that you can control with the left and right arrow keys. If this doesn't work, it may be that pygame isn't installed:
-
-Type into the terminal:
+Type into the terminal the line below, responding **yes** to any prompts:
 ```
 sudo apt-get install python-pygame
 ```
-and respond yes to any prompts.
 
-But now try moving to the left. Eventually our character moves off the screen. How can we fix this? We attempted this last week.
+In the terminal type the following commands: 
 
-Before moving on to this week's task, make sure your player can't move to the left or the right all the way off the screen. Open the code with:
+```
+cd ~/Desktop/lesson6
+
+```
+Drag just game.py file from last week from your flashdrive to the lesson6 folder on your Desktop. Check that the code is running the same as from last week by typing into the terminal: 
+
+```
+python game.py
+```
+
+Now we are moving on to adding characters to the screen. Open your game code:
 
 ```
 gvim game.py
 ```
 
-Remember our player's position can be checked with:
+We are going to customize our game, this involves two steps:
+1. loading custom images and 2. **blitting** images onto characters.
+
+For setp one, add the following code beneath the set of lines that the define the screen:
 
 ```python
-player.left
-player.right
-player.top
-player.botton
+# Define the screen
+width = 640
+height = 460
+screen = pygame.display.set_mode((width, height))
+screen.fill((255,255,255))
+main_clock = pygame.time.Clock()
+
+# New code for this class
+background_image = pygame.image.load("space.jpg").convert_alpha()
+background_image = pygame.transform.scale(background_image,(width,height))
+```
+This loads the image "space.jpg" and makes it the same size as the screen you defined with width and height.
+
+Now inside your game loop and below the line we screen.fill, we replacethe following below the line where we draw our screen:
+```python
+screen.fill((255,255,255)) #draw screen
+```
+with a new line:
+```python
+#New code to add
+screen.blit(background_image,(0,0)) #add background on screen
 ```
 
-Ok now we will add falling objects to create an avoider-style game. Open your game.py code:
+Test this is working by saving the code, then typing in the terminal:
+
 ```
-gvim game.py
+python game.py
 ```
 
+Your game should now have a space background.
+Now we do the same for the player, first load the player image, in the line below where we loaded the background image. 
+```python
+player_image = pygame.image.load("spaceship.png").convert_alpha()
+player_image = pygame.transform.scale(player_image, (60, 60))
+```
 
-After the line:
+Now in the game loop, replace the line
+```python
+pygame.draw.rect(screen, (0,0,0), player) #draw player
+```
+with
+```python
+screen.blit(player_image,player)
+```
+
+When you test the code, a space ship should show up where our player was:
+```
+python game.py
+```
+
+Now slightly trickier we do this for the falling objects, add below where we defined
 
 ```python
-# Define the player x,y,width,height
-player = pygame.Rect(300,400,60,60)
-
+#load a image for falling objects
+object_image = pygame.image.load("asteroid.png").convert_alpha()
+object_image = pygame.transform.scale(object_image, (50, 50))
 ```
 
-Add a new line:
+and replace the lines:
 
 ```python
-all_objects = [] #empty objects list
-
-```
-
-Now directly below that line will add an object to the list:
-
-```python
-pos_x = 100 #x screen position
-pos_y = -10 #y screen position make the circle off screen
-obj = pygame.draw.circle((screen),(0,0,0),(pos_x,pos_y),20,0)
-all_objects.append(obj) 
-```
-
-Now we actually have to draw these objects in our **game loop**, after the line:
-```python
-    pygame.draw.rect(screen, (0,0,0), player) #draw player
-```
-add the new lines:
-```python
-    for obj in all_objects:
-    	obj.y += 3 # object is falling
-	if obj.y >= height: #check if object off the screen
-            obj.y = -10
-        obj = pygame.draw.circle((screen), (0, 0, 0),
+obj = pygame.draw.circle((screen), (0, 0, 0),
 				 (obj.x, obj.y),
-				 20,1)
+				 20, 1)
 ```
+with the line:
 
-If you run the code, you should see a circle fall from the top of the screen. On your own,
-try adding a few more circles by appending them to the all_objects. Try varying the x and
-y positions.
-
-Now nothing happens currently if your player touches the circle. To make the player die if he hits a circle, we can add to our object for loop, under the line:
 ```python
-     for obj in all_objects:
-```
-add:
-```python
-    #Test collisions with the bubbles
-    if obj.colliderect(player):
-       all_objects.remove(obj)
-       pygame.quit()
-       sys.exit()
-
+screen.blit(object_image,(obj.x,obj.y))
 ```
 
-You've made your first game! 
+Now the falling objects should be asteroids. After this, call one of us over and we can help you to add your own images!!!
