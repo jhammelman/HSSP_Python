@@ -13,7 +13,7 @@ If you are looking to program without having to install Python on your computer,
 
 Today we will talk about how to customize a game. First we will review from last class.
 
-####Coding instructions
+### Coding instructions
 Using the green button, download this code to your computer. Extract the folder saying yes to all the prompts. Inside the extracted HSSP_Python-master folder, drag the lesson6 folder to the desktop. 
 
 Type into the terminal the line below, responding **yes** to any prompts:
